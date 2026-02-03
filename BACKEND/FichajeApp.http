@@ -1,0 +1,6 @@
+@FichajeApp_HostAddress = http://localhost:5075
+
+GET {{FichajeApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,346 @@
+// ============================================
+// ESTILOS GLOBALES DE LA APLICACIÓN
+// ============================================
+
+// Importar estilos de ng-zorro (componentes de Ant Design)
+@import "ng-zorro-antd/ng-zorro-antd.min.css";
+
+// Reset CSS: eliminar márgenes y paddings por defecto
+* {
+  box-sizing: border-box; // El padding y border se incluyen en el width/height
+  margin: 0;
+  padding: 0;
+}
+
+// Las imágenes ocupan todo el ancho del contenedor
+img {
+  width: 100%;
+}
+
+// ============================================
+// VARIABLES DE COLOR
+// ============================================
+
+// Color azul claro para el fondo de la app
+$blue-100: #dbeeff;
+
+// Variables CSS personalizadas (accesibles desde toda la app)
+:root {
+  --app-bg: var(--bs-blue-100, #{$blue-100}); // Color de fondo principal
+  --app-footer-height: 64px; // Altura del footer fijo
+  --app-header-height: 72px; // Altura del header fijo
+}
+
+// ============================================
+// LAYOUT PRINCIPAL
+// ============================================
+
+// Toda la app ocupa el 100% de la altura
+html, body, app-root {
+  height: 100%;
+}
+
+// Layout flex en columna: header arriba, main en medio, footer abajo
+// El footer siempre está al final, incluso si hay poco contenido
+body {
+  display: flex;
+  flex-direction: column; // Todo en columna vertical
+  min-height: 100vh; // Mínimo el alto de la pantalla
+  margin: 0;
+  background-color: var(--app-bg); // Fondo azul claro
+  position: relative;
+  overflow-x: hidden; // Sin scroll horizontal
+}
+
+// Contenedor principal (donde se cargan las páginas)
+main {
+  flex: 1 0 auto; // Crece para empujar el footer al fondo
+  padding-top: var(--app-header-height) !important; // Espacio para el header fijo
+  padding-bottom: 20px; // Espacio al final
+  // Altura mínima: pantalla completa menos header y footer
+  min-height: calc(100vh - var(--app-header-height) - var(--app-footer-height));
+}
+
+// El último elemento de main siempre tiene margen inferior
+// (para que no se pegue al footer)
+main > *:last-child {
+  margin-bottom: 20px !important;
+}
+
+// ============================================
+// MARCA DE AGUA (LOGO DE FONDO)
+// ============================================
+
+// Logo muy transparente de fondo en toda la app
+body::before {
+  content: "";
+  position: fixed; // Se queda fijo aunque hagas scroll
+  inset: 0; // Ocupa toda la pantalla
+  background-image: url("/Logo_FichajeApp.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; // Se ajusta al tamaño
+  opacity: 0.03; // Muy transparente (casi invisible)
+  z-index: 0; // Detrás de todo el contenido
+  pointer-events: none; // No bloquea clics
+  mix-blend-mode: normal;
+}
+
+body {
+  background-attachment: fixed; // El fondo no se mueve con el scroll
+  overflow-x: hidden; // Sin scroll horizontal
+}
+
+// ============================================
+// ENCABEZADOS DE PÁGINA
+// ============================================
+
+// Caja de título de cada página (ej: "Gestión de Fichajes")
+// Tiene el mismo estilo que el header principal
+.page-header-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Gradiente azul suave con transparencia
+  background: linear-gradient(135deg,
+    rgba(13, 110, 253, 0.12) 0%,
+    rgba(13, 202, 240, 0.08) 50%,
+    rgba(255, 255, 255, 0.9) 100%);
+  -webkit-backdrop-filter: blur(6px); // Compatibilidad Safari
+  backdrop-filter: blur(6px); // Efecto blur del fondo
+  border: 2px solid rgba(13, 110, 253, 0.25);
+  border-top: 4px solid #0d6efd; // Línea azul superior más gruesa
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.15); // Sombra suave
+  margin: 0 auto;
+  max-width: 800px;
+  transition: all 0.3s ease; // Animación suave
+}
+
+// Efecto hover: se eleva un poco
+.page-header-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(13, 110, 253, 0.25); // Sombra más pronunciada
+}
+
+// Título dentro del page-header
+.page-header-box h1 {
+  color: #001529; // Azul oscuro
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+// ============================================
+// RESPONSIVE: TABLETS Y MÓVILES
+// ============================================
+
+// Tablets (hasta 992px)
+@media (max-width: 992px) {
+  .page-header-box h1 {
+    font-size: 32px; // Título más pequeño
+  }
+}
+
+// Móviles (hasta 600px)
+@media (max-width: 600px) {
+  .page-header-box {
+    padding: 10px 16px; // Menos padding
+  }
+  .page-header-box h1 {
+    font-size: 24px; // Título aún más pequeño
+  }
+}
+
+// ============================================
+// RESPONSIVE: PANTALLAS GRANDES
+// ============================================
+
+// Full HD y superiores (1920px+)
+@media (min-width: 1920px) {
+  .page-header-box {
+    max-width: 900px;
+    padding: 35px 24px;
+  }
+
+  .page-header-box h1 {
+    font-size: 44px;
+  }
+
+  main {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  /* Limitar ancho de contenedores de cards */
+  .container-fluid {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* Mejorar legibilidad de cards */
+  .card-body {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .card-header {
+    font-size: 20px;
+  }
+}
+
+// Pantallas 2K y 4K (2560px+)
+@media (min-width: 2560px) {
+  .page-header-box {
+    max-width: 1000px;
+    padding: 40px 28px;
+  }
+
+  .page-header-box h1 {
+    font-size: 48px;
+  }
+
+  main {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  /* Limitar ancho máximo para mejor legibilidad */
+  .container-fluid {
+    max-width: 1800px;
+  }
+
+  .card-body {
+    font-size: 20px;
+    line-height: 1.8;
+  }
+
+  .card-header {
+    font-size: 22px;
+    min-height: 70px !important;
+  }
+
+  /* Aumentar tamaño de botones */
+  .btn-lg {
+    font-size: 20px;
+    padding: 14px 24px;
+  }
+
+  /* Mejorar formularios */
+  .form-control, .form-select {
+    font-size: 18px;
+    padding: 12px 16px;
+  }
+
+  .form-label {
+    font-size: 18px;
+  }
+}
+
+// ============================================
+// ESTILOS UNIFORMES DE BOTONES
+// ============================================
+
+// Estilos base para TODOS los botones de la app
+// (Bootstrap, ng-zorro y botones personalizados)
+.btn, button, [nz-button] {
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.3px !important; // Espaciado entre letras
+  border-radius: 12px !important; // Bordes redondeados
+  transition: all 0.2s ease !important; // Animación suave
+}
+
+// Botones grandes (clase btn-lg de Bootstrap)
+.btn-lg {
+  padding: 10px 20px !important;
+  font-size: 1.1rem !important;
+}
+
+// Efecto hover genérico: se elevan un poco
+.btn:hover, button:hover, [nz-button]:hover {
+  transform: translateY(-1px) !important;
+}
+
+// Botones primarios (azul) - Acciones principales
+.btn-primary, button.btn-primary {
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3) !important;
+}
+.btn-primary:hover, button.btn-primary:hover {
+  box-shadow: 0 6px 14px rgba(13, 110, 253, 0.4) !important;
+}
+
+// Botones de éxito (verde) - Confirmar, aprobar
+.btn-success, button.btn-success {
+  box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3) !important;
+}
+.btn-success:hover, button.btn-success:hover {
+  box-shadow: 0 6px 14px rgba(25, 135, 84, 0.4) !important;
+}
+
+// Botones de peligro (rojo) - Eliminar, denegar
+.btn-danger, button.btn-danger {
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3) !important;
+}
+.btn-danger:hover, button.btn-danger:hover {
+  box-shadow: 0 6px 14px rgba(220, 53, 69, 0.4) !important;
+}
+
+// Botones de advertencia (amarillo) - Avisos
+.btn-warning, button.btn-warning {
+  box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3) !important;
+}
+.btn-warning:hover, button.btn-warning:hover {
+  box-shadow: 0 6px 14px rgba(255, 193, 7, 0.4) !important;
+}
+
+// Botones de información (cian) - Información adicional
+.btn-info, button.btn-info {
+  box-shadow: 0 4px 10px rgba(13, 202, 240, 0.3) !important;
+}
+.btn-info:hover, button.btn-info:hover {
+  box-shadow: 0 6px 14px rgba(13, 202, 240, 0.4) !important;
+}
+
+// ============================================
+// RESPONSIVE: BOTONES EN PANTALLAS GRANDES
+// ============================================
+
+// Pantallas grandes (1200px+)
+@media (min-width: 1200px) {
+  .btn, button, [nz-button] {
+    font-size: 1.2rem !important; // Botones un poco más grandes
+  }
+
+  .btn-lg {
+    padding: 14px 24px !important;
+    font-size: 1.2rem !important;
+  }
+}
+
+// Pantallas Full HD+ (1920px+)
+@media (min-width: 1920px) {
+  .btn, button, [nz-button] {
+    font-size: 1.3rem !important; // Botones más grandes
+  }
+
+  .btn-lg {
+    padding: 16px 28px !important;
+    font-size: 1.3rem !important;
+  }
+}
+
+// Pantallas 2K/4K (2560px+)
+@media (min-width: 2560px) {
+  .btn, button, [nz-button] {
+    font-size: 1.4rem !important; // Botones aún más grandes
+  }
+
+  .btn-lg {
+    padding: 18px 32px !important;
+    font-size: 1.4rem !important;
+  }
+}
+
