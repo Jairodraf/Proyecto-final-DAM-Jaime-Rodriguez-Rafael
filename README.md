@@ -49,7 +49,7 @@ La arquitectura del proyecto sigue el patrón **Cliente-Servidor**:
 
 | Login de Usuario | Panel de Gestión |
 |:---:|:---:|
-| ![Login](./screenshots/login.png) | ![Dashboard](./screenshots/dashboard.png) |
+| ![Login](./SCREENSHOTS/Login.png) | ![Dashboard](./screenshots/dashboard.png) |
 
 ---
 
