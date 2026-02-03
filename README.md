@@ -65,23 +65,28 @@ Si deseas ejecutar este proyecto en local:
 ### 1. Base de Datos
 Actualiza la cadena de conexión en el archivo `appsettings.json` del Backend con tus credenciales locales de PostgreSQL.
 
+---
+
 ### 2. Backend (API)
-```bash
+
 cd Backend
 dotnet restore
 dotnet run
 
+---
+
 ### 3. Frontend (Cliente)
-```bash
+
 cd Frontend
 npm install
 ng serve -o
 
+---
 
-👤 Autor
-Jaime Rodriguez Rafael
+### 4. 👤 Autor
+Jaime Rodriguez Rafael.
 
-💼 LinkedIn
+### 💼 LinkedIn
 https://www.linkedin.com/in/jaimerodriguezrafael/
 
 📧 jaime.rodriguez.rafael@gmail.com
