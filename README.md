@@ -1,4 +1,4 @@
-# Proyecto-final-DAM-Jaime-Rodr-guez-Rafael
+# Proyecto-final-DAM-Jaime-Rodriguez-Rafael
 # 🏢 Sistema de Gestión de Recursos Humanos (HR Management System)
 
 ## 📄 Descripción del Proyecto
