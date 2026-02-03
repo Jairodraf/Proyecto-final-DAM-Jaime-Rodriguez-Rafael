@@ -70,7 +70,9 @@ Actualiza la cadena de conexión en el archivo `appsettings.json` del Backend co
 ### 2. Backend (API)
 
 cd Backend
+
 dotnet restore
+
 dotnet run
 
 ---
@@ -78,7 +80,9 @@ dotnet run
 ### 3. Frontend (Cliente)
 
 cd Frontend
+
 npm install
+
 ng serve -o
 
 ---
