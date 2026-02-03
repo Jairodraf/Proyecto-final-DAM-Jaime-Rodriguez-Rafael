@@ -70,3 +70,18 @@ Actualiza la cadena de conexión en el archivo `appsettings.json` del Backend co
 cd Backend
 dotnet restore
 dotnet run
+
+### 3. Frontend (Cliente)
+```bash
+cd Frontend
+npm install
+ng serve -o
+
+
+👤 Autor
+Jaime Rodriguez Rafael
+
+💼 LinkedIn
+https://www.linkedin.com/in/jaimerodriguezrafael/
+
+📧 jaime.rodriguez.rafael@gmail.com
