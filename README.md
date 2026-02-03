@@ -47,9 +47,9 @@ La arquitectura del proyecto sigue el patrón **Cliente-Servidor**:
 
 
 
-| Login de Usuario | Panel de Gestión |
+| Login de Usuario | Panel de Gestión | Registro de fichaje | Ausencias
 |:---:|:---:|
-| ![Login](./SCREENSHOTS/Login.png) | ![Dashboard](./screenshots/dashboard.png) |
+| ![Login](./SCREENSHOTS/Login.png) | ![Dashboard](./SCREENSHOTS/Gestióndeempleados.png) |
 
 ---
 
