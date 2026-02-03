@@ -45,7 +45,7 @@ La arquitectura del proyecto sigue el patrón **Cliente-Servidor**:
 
 ## 📸 Capturas de Pantalla
 
-*(¡IMPORTANTE: Sube imágenes de tu app a una carpeta llamada 'screenshots' en tu repo y enlázalas aquí! Si no tienes imágenes, borra esta sección, pero recomiendo mucho ponerlas).*
+
 
 | Login de Usuario | Panel de Gestión |
 |:---:|:---:|
