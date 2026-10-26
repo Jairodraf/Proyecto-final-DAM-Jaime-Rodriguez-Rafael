@@ -27,7 +27,7 @@ builder.Services.AddControllers()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Dev", p => p
-        .WithOrigins("http://localhost:4200", "https://localhost:4200") // añade aquí IP:puerto si accedes desde móvil
+        .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://localhost:8085") // añade aquí IP:puerto si accedes desde móvil
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials());
@@ -104,21 +104,21 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
-
-// CORS sólo en desarrollo (quítalo si usas proxy estrictamente)
-if (app.Environment.IsDevelopment())
+// Solo redirigir a HTTPS si no estamos en producción/Docker sin cert
+if (!app.Environment.IsProduction())
 {
-    app.UseDeveloperExceptionPage(); // ver excepciones detalladas en dev
-    app.UseCors("Dev");
+    // app.UseHttpsRedirection(); // Comentado para evitar bucles de redirección en Docker
 }
+
+// Habilitar CORS para permitir llamadas desde el frontend
+app.UseCors("Dev");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-// Permitir que la app escuche en todas las interfaces (HTTP/HTTPS)
-builder.WebHost.UseUrls("http://0.0.0.0:5241", "https://0.0.0.0:7286");
+// IMPORTANTE: Elimina o comenta esta línea:
+// builder.WebHost.UseUrls("http://0.0.0.0:5241", "https://0.0.0.0:7286");
 
 app.Run();
